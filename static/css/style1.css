@@ -1,0 +1,200 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+body{
+    font-family: sans-serif;
+}
+.navbar{
+    background-color: #1099e9;
+    height: 5rem;
+    width: 100%;
+}
+
+label.logo{
+    font-size: 2.1rem;
+    line-height: 5rem;
+    padding: 0 6.25rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.container{
+    margin-top: 5.5rem;
+}
+nav ul li a{
+    color: white;
+    font-size: 1rem;
+    padding: 0.4375rem 0.8125rem;
+    border-radius: 0.1875rem;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.navlink{
+    color: white;
+}
+a:hover{
+    background: #70bbe7;
+    transition: .5s;
+    text-decoration: none;
+}
+.active{
+    background-color: #70bbe7;
+}
+.nav-item{
+    margin: 0 0.3125rem;
+}
+
+#main{
+    position: relative;
+    top: 0;
+    left: 50%;
+    margin-left: -15rem;
+    margin-top: 5rem;
+    width: 30rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 1rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 0.2rem;
+}
+.main_pred{
+    position: relative;
+    top: 0;
+    left: 50%;
+    margin-left: -15rem;
+    margin-top: 1rem;
+    width: 30rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 1rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 0.2rem;
+}
+#Forms{
+    margin: 0 2%;  
+    margin-top: 10%;
+}
+#Forms button{
+    margin-top: 1rem;
+    width: 100%;
+    background-color: #1099e9;
+    height: 2.1rem;
+    border: 0.01rem solid rgb(199, 196, 196);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+#Forms button:hover{
+    background-color: #70bbe7;
+}
+#Forms input{
+    display: block;   
+    width: 100%;
+}
+#Forms input[type='email']{
+    margin-bottom: 1rem;
+    border: 1px solid #fff;
+    height: 1.8rem;
+    border-style: solid;
+    border-left:0.5rem solid #1099e9;
+    border-radius: 0.5rem;
+}
+#Forms input[type='password']{
+    margin-bottom: 1rem;
+    border: 1px solid #fff;
+    height: 1.8rem;
+    border-style: solid;
+    border-left:0.5rem solid #1099e9;
+    border-radius: 0.5rem;
+}
+th{
+    text-transform: capitalize;
+    text-align: center;
+}
+td{
+    text-align: center;
+}
+.table{
+    height: 20%;
+}
+.details{
+    width: 100%;
+    margin: auto;
+
+}
+.details>h2{
+    text-transform: uppercase;
+    text-align: center;
+}
+#details_content{
+    width: 30rem;
+    margin-top: 1rem;
+    margin-left: 0.6rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 1rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 0.2rem;
+}
+#main>h2{
+    text-transform: uppercase;
+    text-align: center;
+}
+#prediction>h3{
+    margin-top: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+#user_image>img{
+    width: 28rem;
+    height: 20rem;
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+}
+#images{
+    display: flex;
+    flex-flow:row wrap;
+}
+.main_image{
+    width: 30rem;
+    margin: 1rem 1rem 1rem 0.6rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 1rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 0.2rem;
+}
+@media (max-width: 992px) {
+    .details{
+        width: 32rem;
+        margin: auto;
+    }
+}
+@media (max-width: 490px) {
+    .details{
+        overflow-x: hidden;
+        width: fit-content;
+    }
+    #images{
+        overflow: hidden;
+    }
+    .main_image{
+        overflow: hidden;
+    }
+}

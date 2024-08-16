@@ -1,0 +1,84 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    background-color: white
+}
+#main{
+    position: relative;
+    top: 0;
+    left: 50%;
+    margin-left: -15rem;
+    margin-top: 12rem;
+    width: 30rem;
+    overflow: hidden;
+}
+#page-head{
+    font-weight: lighter;
+    text-align: center;
+}
+#Forms{
+    margin: 0 2%;  
+    margin-top: 10%;
+
+}
+#Forms input{
+    display: block;   
+    width: 100%;
+}
+
+#Forms input[type='text']{
+    margin-bottom: 1rem;
+    border: 1px solid #fff;
+    height: 1.8rem;
+    border-style: solid;
+    border-left:0.5rem solid #1099e9;
+    border-radius: 0.5rem;
+}
+
+#Forms input[type='password']{
+    margin-bottom: 1rem;
+    border: 1px solid #fff;
+    height: 1.8rem;
+    border-style: solid;
+    border-left:0.5rem solid #1099e9;
+    border-radius: 0.5rem;
+}
+
+#Forms input[type='email']{
+    margin-bottom: 1rem;
+    border: 1px solid #fff;
+    height: 1.8rem;
+    border-style: solid;
+    border-left:0.5rem solid #1099e9;
+    border-radius: 0.5rem;
+}
+
+#Forms button{
+    margin-top: 1rem;
+    width: 100%;
+    background-color: #1099e9;
+    height: 2.1rem;
+    border: 0.01rem solid rgb(199, 196, 196);
+    border-radius: 0.5rem;
+}
+
+#Forms button:hover{
+    background-color: #70bbe7;
+}
+
+#notice{
+    margin-top: 1rem;
+}
+
+#notice a:hover{
+    color: rgb(146, 169, 146);
+}
+div.container {
+    margin-top: 0.5rem;
+}

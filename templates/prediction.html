@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Page</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<body>
+    <div class="result">
+        <h3>The result of data with features as follows</h3>
+        <table>
+        {% for key, value in data.items(): %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+    <div id="Forms">   
+        <form action="{{url_for('predict')}}" method="post">
+            <label for="pclass">Pclass</label>
+            <input type="text" name="pclass" id="" placeholder="Pclass">
+            <label for="age">Age</label>
+            <input type="text" name="age" id="" placeholder="Age">
+            <label for="fare">Fare</label>
+            <input type="text" name="fare" id="" placeholder="Fare">
+            <label for="sex">Sex</label>
+            <table>
+                <tr>
+                    <td><input type="radio" name="sex" id="" value="0"></td>
+                    <td><label for="sex">Male</label></td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="sex" id="" value="1"></td>
+                    <td><label for="sex">Female</label></td>
+                </tr>
+            </table>
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+</body>
+</html>
