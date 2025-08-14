@@ -1,0 +1,96 @@
+<!-- Email Modal -->
+<div id="emailModal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-96">
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Change Email</h3>
+        <form method="POST" action="{{ url_for('change_email') }}" class="space-y-4">
+            <input type="email" name="new_email" placeholder="Enter new email"
+                   class="w-full p-3 rounded-lg border dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+                   required>
+
+            <div class="relative">
+                <input type="password" id="email_password" name="password" placeholder="Enter your password"
+                       class="w-full p-3 rounded-lg border dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}"
+                       title="Include 1 uppercase, 1 lowercase, 1 number, and 1 special character"
+                       minlength="8"
+                       required>
+                <button type="button" class="toggle-password absolute right-3 top-3 text-gray-500 dark:text-gray-300" data-target="email_password">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path d="M2.458 12C3.732 7.943 7.523 5
+                                 12 5c4.478 0 8.268 2.943 9.542 7
+                                 -1.274 4.057-5.064 7-9.542 7
+                                 -4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="flex justify-end space-x-3">
+                <button type="button" onclick="closeModal('emailModal')"
+                        class="px-4 py-2 bg-gray-300 dark:bg-gray-600 text-gray-900 dark:text-white rounded-lg">
+                    Cancel
+                </button>
+                <button type="submit"
+                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Password Modal -->
+<div id="passwordModal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-96">
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Change Password</h3>
+        <form method="POST" action="{{ url_for('change_password') }}" class="space-y-4">
+
+            <div class="relative">
+                <input type="password" id="current_password" name="current_password" placeholder="Current password"
+                       class="w-full p-3 rounded-lg border dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}"
+                       title="Include 1 uppercase, 1 lowercase, 1 number, and 1 special character"
+                       minlength="8"
+                       required>
+                <button type="button" class="toggle-password absolute right-3 top-3 text-gray-500 dark:text-gray-300" data-target="current_password">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path d="M2.458 12C3.732 7.943 7.523 5
+                                 12 5c4.478 0 8.268 2.943 9.542 7
+                                 -1.274 4.057-5.064 7-9.542 7
+                                 -4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="relative">
+                <input type="password" id="new_password" name="new_password" placeholder="New password"
+                       class="w-full p-3 rounded-lg border dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}"
+                       title="Include 1 uppercase, 1 lowercase, 1 number, and 1 special character"
+                       minlength="8"
+                       required>
+                <button type="button" class="toggle-password absolute right-3 top-3 text-gray-500 dark:text-gray-300" data-target="new_password">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path d="M2.458 12C3.732 7.943 7.523 5
+                                 12 5c4.478 0 8.268 2.943 9.542 7
+                                 -1.274 4.057-5.064 7-9.542 7
+                                 -4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="flex justify-end space-x-3">
+                <button type="button" onclick="closeModal('passwordModal')"
+                        class="px-4 py-2 bg-gray-300 dark:bg-gray-600 text-gray-900 dark:text-white rounded-lg">
+                    Cancel
+                </button>
+                <button type="submit"
+                        class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

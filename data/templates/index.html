@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gender & Age Detection</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <header class="w-full bg-white dark:bg-gray-800 shadow-md">
+    <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+      <!-- Logo -->
+      <h1 class="text-xl font-bold">Gender & Age Detection</h1>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center gap-4">
+        <button id="themeToggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">
+          <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+          <i data-lucide="sun" class="w-5 h-5 hidden dark:inline"></i>
+        </button>
+        <a href="/login" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold">Sign In</a>
+        <a href="/register" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold">Register</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden flex-col gap-4 p-4 bg-white dark:bg-gray-800 border-t dark:border-gray-700 md:hidden">
+      <button id="themeToggleMobile" class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">
+        <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+        <i data-lucide="sun" class="w-5 h-5 hidden dark:inline"></i>
+        <span>Toggle Theme</span>
+      </button>
+      <a href="/login" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-center font-semibold">Sign In</a>
+      <a href="/register" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-center font-semibold">Register</a>
+    </div>
+  </header>
+
+  <section>
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+                  <div class="fixed top-16 left-1/2 transform -translate-x-1/2 w-full max-w-lg z-50 space-y-3 px-4" id="flash-container">
+                          {% for category, msg in messages %}
+                                  <div class="flash-msg px-4 py-3 rounded text-sm font-medium flex justify-between items-center
+                                          {% if category == 'success' %}
+                                            bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100
+                                          {% elif category == 'danger' %}
+                                            bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100
+                                          {% elif category == 'warning' %}
+                                            bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100
+                                          {% elif category == 'info' %}
+                                            bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100
+                                          {% else %}
+                                            bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200
+                                          {% endif %}
+                                  ">
+                                    <span>{{ msg }}</span>
+                                    <button type="button" class="ml-4 focus:outline-none" onclick="this.parentElement.remove()">
+                                      &times;
+                                    </button>
+                                  </div>
+                          {% endfor %}
+                  </div>
+          {% endif %}
+    {% endwith %}
+  </section>
+  <!-- Hero Section -->
+  <section class="flex-1 flex flex-col md:flex-row items-center max-w-7xl mx-auto px-6 py-12 gap-10">
+    <div class="flex-1 text-center md:text-left">
+      <h2 class="text-4xl md:text-5xl font-extrabold leading-tight">
+        AI-Powered <span class="text-blue-500">Gender</span> & <span class="text-green-500">Age</span> Detection
+      </h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+        Upload an image or use your webcam, and our advanced AI instantly determines the person's gender and estimated age with high accuracy — fast, secure, and privacy-friendly.
+      </p>
+      <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+        <a href="/login" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold">Get Started</a>
+        <a href="#features" class="bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 px-6 py-3 rounded-lg font-semibold">Learn More</a>
+      </div>
+    </div>
+    <div class="flex-1 flex justify-center">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="AI Detection" class="w-80 h-80 object-contain drop-shadow-lg">
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="bg-gray-50 dark:bg-gray-800 py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <h3 class="text-3xl font-bold text-center mb-10">Why Choose Our System?</h3>
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md">
+          <h4 class="text-xl font-semibold mb-3">⚡ Instant Detection</h4>
+          <p class="text-gray-600 dark:text-gray-300">Our AI model processes your image in seconds, providing fast and accurate results.</p>
+        </div>
+        <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md">
+          <h4 class="text-xl font-semibold mb-3">🔒 Privacy First</h4>
+          <p class="text-gray-600 dark:text-gray-300">Your data never leaves our secure environment. We value your privacy above all else.</p>
+        </div>
+        <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md">
+          <h4 class="text-xl font-semibold mb-3">📷 Flexible Input</h4>
+          <p class="text-gray-600 dark:text-gray-300">Upload images or capture directly from your webcam — whichever is most convenient.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-center py-6 mt-auto">
+    © 2025 Gender & Age Detection System. All rights reserved.
+  </footer>
+
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='scripts/index_.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/notification.js') }}"></script>
+
+</body>
+</html>

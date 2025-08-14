@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-5xl mx-auto px-6 py-12 animate-fadeIn">
+
+    <!-- Page Title -->
+    <div class="text-center mb-10">
+        <h1 class="text-4xl font-bold text-gray-800 dark:text-gray-200 flex items-center justify-center gap-3">
+            ⚙️ Settings
+        </h1>
+        <p class="text-gray-500 dark:text-gray-400 mt-2">
+            Manage your account, appearance, and security preferences
+        </p>
+    </div>
+
+    <div class="space-y-8">
+
+        <!-- Account Section -->
+        <section class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition">
+            <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
+                👤 Account
+            </h2>
+            <div class="space-y-2 text-gray-700 dark:text-gray-300">
+                <p><span class="font-medium">Name:</span> {{ user.name }}</p>
+                <p><span class="font-medium">Email:</span> {{ user.email }}</p>
+                <p><span class="font-medium">Date Joined:</span> {{ user.date_joined }}</p>
+            </div>
+            <div class="mt-4">
+                <button onclick="openModal('emailModal')"
+                        class="px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+                    ✉️ Change Email
+                </button>
+            </div>
+        </section>
+
+        <!-- Appearance Section -->
+        <section class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition">
+            <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
+                🎨 Appearance
+            </h2>
+            <div class="flex items-center justify-between">
+                <span class="text-gray-700 dark:text-gray-300">Dark Mode</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="darkModeToggle" class="sr-only peer">
+                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700
+                                peer-checked:bg-blue-600 transition-colors duration-300">
+                    </div>
+                    <span class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300
+                                 peer-checked:translate-x-5"></span>
+                </label>
+            </div>
+
+        </section>
+
+        <!-- Security Section -->
+        <section class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition">
+            <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
+                🔒 Security
+            </h2>
+            <button onclick="openModal('passwordModal')"
+                    class="px-5 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition">
+                Change Password
+            </button>
+        </section>
+
+    </div>
+</div>
+
+<!-- Modals -->
+{% include "partials/settings_modals.html" %}
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ url_for('static', filename='scripts/modal.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/settings_toggle.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/settings_dark_toggle.js') }}"></script>
+{% endblock %}

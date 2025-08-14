@@ -1,0 +1,52 @@
+<!-- Header -->
+<header class="bg-white dark:bg-gray-800 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+
+        <!-- Logo / Title -->
+        <div class="text-xl font-bold text-blue-600 dark:text-blue-400">Gender & Age Detection</div>
+
+        <!-- Desktop Menu -->
+        <nav class="hidden md:flex space-x-6 items-center">
+            <a href="/home" class="hover:underline">Home</a>
+            <a href="/about" class="hover:underline">About</a>
+            <a href="/history" class="hover:underline">History</a>
+
+            <!-- Dark Mode Toggle -->
+            <button id="themeToggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">
+              <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+              <i data-lucide="sun" class="w-5 h-5 hidden dark:inline"></i>
+            </button>
+
+            <!-- Profile Image with Dropdown -->
+            <div class="relative">
+              <img src="{{ url_for('static', filename='images/images.png') }}" alt="User" class="w-10 h-10 rounded-full cursor-pointer" id="userAvatar">
+              <div id="userDropdown" class="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 rounded-lg shadow-lg hidden">
+                <a href="/profile" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Profile</a>
+                <a href="/settings" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Settings</a>
+                <a href="/logout" class="block px-4 py-2 text-red-500 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
+              </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden px-4 pb-3 space-y-2">
+        <a href="/home" class="block hover:underline">Home</a>
+        <a href="/about" class="block hover:underline">About</a>
+        <a href="/history" class="block hover:underline">History</a>
+        <a href="/profile" class="block hover:underline">Profile</a>
+        <a href="/settings" class="block hover:underline">Settings</a>
+        <a href="/logout" class="block text-red-500 hover:underline">Logout</a>
+
+        <!-- Dark Mode Toggle (Mobile) -->
+        <button id="themeToggleMobile" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">
+            <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+            <i data-lucide="sun" class="w-5 h-5 hidden dark:inline"></i>
+        </button>
+    </div>
+</header>

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-6 py-10 animate-fadeIn">
+
+    <!-- Title -->
+    <h1 class="text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-8">
+        🧠 Face Analysis Result
+    </h1>
+
+    <!-- Image -->
+    <div class="flex justify-center mb-8">
+        <img src="{{ data.url }}"
+             alt="Uploaded Face"
+             class="rounded-xl shadow-lg border border-gray-300 dark:border-gray-700 max-h-96 object-contain">
+    </div>
+
+    <!-- Result Card -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 space-y-4">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Age -->
+            <div class="p-4 rounded-lg bg-gray-100 dark:bg-gray-700">
+                <p class="text-sm text-gray-500 dark:text-gray-300">Age Range</p>
+                <p class="text-xl font-semibold text-gray-800 dark:text-white">
+                    {{ data.age_lower }} - {{ data.age_upper }} years
+                </p>
+            </div>
+
+            <!-- Gender -->
+            <div class="p-4 rounded-lg bg-gray-100 dark:bg-gray-700">
+                <p class="text-sm text-gray-500 dark:text-gray-300">Gender</p>
+                <p class="text-xl font-semibold text-gray-800 dark:text-white">
+                    {{ data.gender }}
+                </p>
+            </div>
+
+            <!-- Sunglasses -->
+            <div class="p-4 rounded-lg bg-gray-100 dark:bg-gray-700">
+                <p class="text-sm text-gray-500 dark:text-gray-300">Sunglasses</p>
+                <p class="text-xl font-semibold text-gray-800 dark:text-white">
+                    {% if data.sunglasses %} Yes 🕶️ {% else %} No {% endif %}
+                </p>
+            </div>
+
+            <!-- Eyeglasses -->
+            <div class="p-4 rounded-lg bg-gray-100 dark:bg-gray-700">
+                <p class="text-sm text-gray-500 dark:text-gray-300">Eyeglasses</p>
+                <p class="text-xl font-semibold text-gray-800 dark:text-white">
+                    {% if data.eyeglasses %} Yes 👓 {% else %} No {% endif %}
+                </p>
+            </div>
+
+            <!-- Smiling -->
+            <div class="p-4 rounded-lg bg-gray-100 dark:bg-gray-700">
+                <p class="text-sm text-gray-500 dark:text-gray-300">Smiling</p>
+                <p class="text-xl font-semibold text-gray-800 dark:text-white">
+                    {% if data.smiling %} Yes 😀 {% else %} No 😐 {% endif %}
+                </p>
+            </div>
+
+            <!-- Emotion -->
+            <div class="p-4 rounded-lg bg-gray-100 dark:bg-gray-700">
+                <p class="text-sm text-gray-500 dark:text-gray-300">Emotion</p>
+                <p class="text-xl font-semibold text-gray-800 dark:text-white">
+                    {{ data.emotion }}
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Detect Again Button -->
+    <div class="mt-8 flex justify-center">
+        <a href="{{ url_for('upload') }}"
+           class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition">
+            🔄 Detect Another Face
+        </a>
+    </div>
+
+</div>
+{% endblock %}

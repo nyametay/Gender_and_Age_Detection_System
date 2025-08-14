@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-5xl mx-auto px-6 py-12 animate-fadeIn">
+
+    <h1 class="text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-8">
+        About Our Gender & Age Detection System
+    </h1>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 space-y-6">
+        <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            Our Gender & Age Detection System leverages advanced computer vision
+            and deep learning models to accurately estimate a person's gender and age
+            from an image. Whether you're experimenting with AI or integrating this
+            into a real-world application, our system ensures speed, accuracy, and 
+            user-friendly interaction.
+        </p>
+
+        <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            The system uses two powerful models to deliver predictions, giving you
+            the ability to compare results for greater reliability. Combined with an 
+            intuitive interface, this tool is designed for both casual exploration 
+            and professional use.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-8">
+            <div class="p-6 bg-blue-50 dark:bg-blue-900 rounded-lg">
+                <h3 class="text-xl font-semibold text-blue-700 dark:text-blue-300 mb-2">
+                    Key Features
+                </h3>
+                <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Dual-model prediction</li>
+                    <li>High accuracy and speed</li>
+                    <li>Dark mode support</li>
+                    <li>Fully responsive UI</li>
+                </ul>
+            </div>
+
+            <div class="p-6 bg-green-50 dark:bg-green-900 rounded-lg">
+                <h3 class="text-xl font-semibold text-green-700 dark:text-green-300 mb-2">
+                    Technology Stack
+                </h3>
+                <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Flask (Python Backend)</li>
+                    <li>OpenCV & Deep Learning</li>
+                    <li>TailwindCSS for styling</li>
+                    <li>SQLite for storage</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
