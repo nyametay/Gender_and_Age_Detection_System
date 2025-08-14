@@ -58,7 +58,7 @@ flask run
 ```
 
 # 📂 Project Structure
-
+```
 gender age detector/
 │
 ├── app.py                   # Main Flask entry point
@@ -79,7 +79,7 @@ gender age detector/
 ├── requirements.txt          # Dependencies
 ├── README.md                 # Project README
 └── data.db                   # SQLite database (auto-generated)
-
+```
 # 🚀 Usage
 
 - Sign up or log in.
