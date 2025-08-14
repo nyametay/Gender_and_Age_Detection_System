@@ -1,114 +1,126 @@
-Gender and Age Detection System
+# 🧑‍💻 Gender And Age Detector
 
-Welcome to the Gender and Age Detection System repository! This project uses machine learning to detect the gender and age of a person from an image. The system is built using Flask for the backend and HTML, CSS, and JavaScript for the frontend.
+A Flask-powered web application that analyzes faces in uploaded images using the **FaceAnalyzer AI API**.  
+The app detects **age range**, **gender**, **emotion**, and whether the person is wearing **eyeglasses**, **sunglasses**, or is **smiling** — with results stored in a user-specific prediction history.
 
-Table of Contents
-1. Introduction
-2. Features
-3. Installation
-4. Usage
-5. Project Structure
-6. Contact
+---
 
-Introduction
+## 📸 Features
 
-This project aims to create a web application that can predict the gender and age of a person from an uploaded image. The system leverages machine learning models and provides an easy-to-use web interface for users.
+✅ **User Authentication** – Sign up, log in, and maintain personalized detection history.  
+✅ **Face Analysis** – Detect **age range**, **gender**, **emotion**, **eyeglasses**, **sunglasses**, and **smiling status**.  
+✅ **Image Upload** – Upload an image via a form for instant AI-based prediction.  
+✅ **History Page** – View past detections in a clean, card-based layout.  
+✅ **Dark Mode Support** – Modern UI with light/dark themes.  
+✅ **Responsive Design** – Works on desktop, tablet, and mobile.  
 
-Features
-1. Gender Detection: Predicts whether the person in the image is male or female.
-2. Age Detection: Estimates the age of the person in the image.
-3. User-Friendly Interface: A simple and intuitive web interface.
-4. Real-Time Processing: Fast and efficient image processing.
+---
 
-Installation
+## 🛠️ Tech Stack
 
-Follow these steps to set up the project on your local machine:
+- **Backend:** Python, Flask  
+- **Frontend:** HTML, Tailwind CSS, JavaScript  
+- **Database:** SQLite (`data.db`) with SQLAlchemy ORM  
+- **Task Handling:** Flask routes + session management  
+- **API Integration:** [FaceAnalyzer AI API](https://rapidapi.com/) via `requests`  
+- **Auth:** Flask session-based authentication  
 
-Prerequisites
-1. Python 3.7+
-2. Flask
-3. HTML, CSS, and JavaScript knowledge
-4. Virtual environment tools (optional but recommended)
+---
 
-Clone the Repository
-1. git clone https://github.com/nyameget/gender-age-classification_system.git
-2. cd gender-age-classification_system
+## 📦 Installation
 
-Set Up the Virtual Environment
-1. python3 -m venv venv
-2. source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+```bash
+# 1️⃣ Clone the repository
+git clone https://github.com/your-username/face-analyzer-app.git
+cd face-analyzer-app
 
-Install the Dependencies
-1. pip install -r requirements.txt
+# 2️⃣ Create a virtual environment
+python -m venv venv
+source venv/bin/activate   # Mac/Linux
+venv\Scripts\activate      # Windows
 
-Usage
+# 3️⃣ Install dependencies
+pip install -r requirements.txt
 
-Running the Application
-1. flask run
-2. Navigate to http://127.0.0.1:5000/ in your web browser to use the application.
+# 4️⃣ Set environment variables (example for Linux/Mac)
+export FLASK_APP=app.py
+export FLASK_ENV=development
+export RAPIDAPI_KEY=your_api_key_here
 
-Uploading an Image
-1. Click on the "Upload Image" button.
-2. Select an image file from your computer.
-3. The system will process the image and display the predicted gender and age.
+# 5️⃣ Initialize database
+flask shell
+>>> from data import db
+>>> db.create_all()
+>>> exit()
 
-Project Structure
+# 6️⃣ Run the app
+flask run
+```
 
-gender-age-classification_system/
+# 📂 Project Structure
 
-├── app/
+gender age detector/
+│
+├── app.py                   # Main Flask entry point
+├── data/                    # Application package
+│   ├── static/               # CSS, JS, Images
+│   ├── templates/            # HTML templates
+│   │   ├── base.html
+│   │   ├── index.html
+│   │   ├── history.html
+│   │   ├── login.html
+│   │   ├── register.html
+│   │   └── profile.html
+│   ├── routes.py             # All Flask routes
+│   ├── models.py             # SQLAlchemy models
+│   ├── modules.py            # Helper modules/functions
+│   └── __init__.py           # App factory & DB initialization
+│
+├── requirements.txt          # Dependencies
+├── README.md                 # Project README
+└── data.db                   # SQLite database (auto-generated)
 
-│   ├── static/
+# 🚀 Usage
 
-│   │   ├── css/
+- Sign up or log in.
+- Upload a face image via the form.
+- Wait for AI processing (done in real-time).
+- View results — including age range, gender, emotion, and accessories.
+- Check your history page for past detections.
 
-│   │   │   └── styles.css
+# 📡 API Integration
 
-│   │   ├── js/
+We use the FaceAnalyzer AI API from RapidAPI:
 
-│   │   │   └── script.js
+```bash
+# Endpoint:
+POST https://faceanalyzer-ai.p.rapidapi.com/faceanalysis
 
-│   ├── templates/
+# Example:
 
-│   │   └── index.html
+import requests
 
-│   ├── __init__.py
+url = "https://faceanalyzer-ai.p.rapidapi.com/faceanalysis"
+files = {"image": ("face.jpg", open("face.jpg", "rb"), "image/jpeg")}
+headers = {
+    "x-rapidapi-key": "YOUR_RAPIDAPI_KEY",
+    "x-rapidapi-host": "faceanalyzer-ai.p.rapidapi.com"
+}
 
-│   ├── routes.py
+response = requests.post(url, files=files, headers=headers)
+print(response.json())
+```
 
-│   └── model.py
+# 🤝 Contributing
 
-├── models/
+- Fork the repository
+- Create a new branch (feature/new-feature)
+- Commit changes
+-Push to your fork
+-Create a Pull Request
 
-│   └── gender_age_model.h5
+# 💡 Author
 
-├── tests/
-
-│   └── test_app.py
-
-├── .gitignore
-
-├── README.md
-
-├── requirements.txt
-
-└── run.py
-
-1. app/: Contains the Flask application files.
-2. static/: Contains static files (CSS, JavaScript).
-3. templates/: Contains HTML templates.
-4. __init__.py: Initializes the Flask app.
-5. routes.py: Contains the route definitions.
-6. model.py: Contains the machine learning model loading and prediction logic.
-7. models/: Contains the pre-trained machine learning models.
-8. tests/: Contains test files.
-9. .gitignore: Specifies files and directories to be ignored by Git.
-10. README.md: This README file.
-11. requirements.txt: Lists the Python dependencies.
-12. run.py: The entry point to run the Flask application.
-
-Contact
-
-For any inquiries or feedback, please contact nyameget@gmail.com.
-
-Thank you for visiting our repository! We hope you find this project useful and interesting.
+👨‍💻 Isaac Nyame Taylor
+📧 Contact: isaac4230220@gmail.com
+🔗 GitHub: nyametay
