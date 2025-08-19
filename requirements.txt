@@ -50,7 +50,6 @@ tensorboard
 tensorboard-data-server
 tensorflow
 tensorflow-estimator
-tensorflow-intel
 tensorflow-io-gcs-filesystem
 termcolor
 threadpoolctl
@@ -59,3 +58,4 @@ tzdata
 urllib3
 Werkzeug
 wrapt
+
