@@ -11,7 +11,6 @@ gunicorn
 idna
 itsdangerous
 Jinja2
-keras
 MarkupSafe
 numpy
 opencv-python
@@ -26,6 +25,7 @@ typing_extensions
 urllib3
 Werkzeug
 Wikipedia-API
+
 
 
 
