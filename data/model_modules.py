@@ -1,5 +1,5 @@
 import numpy as np
-from keras.preprocessing.image import ImageDataGenerator
+#from keras.preprocessing.image import ImageDataGenerator
 import cv2
 import os
 
@@ -8,7 +8,7 @@ def resize_image(image):
     image = cv2.resize(image, (48, 48))
     return image
 
-
+'''
 def data_generator(x):
     x = x / 255
     datagen = ImageDataGenerator(
@@ -35,7 +35,7 @@ def data_generator(x):
         vertical_flip=False)
     datagen.fit(x)
     return x
-
+'''
 
 '''
 def unserialize_models():
@@ -124,8 +124,10 @@ def get_cropped_face(image_bytes):
     else:
         return np.array(faces)
 
-
+'''
 def get_prediction(cropped_image, age_model, age_class_model, gender_model):
     X = data_generator(cropped_image)
     pred = prediction_string(age_model, age_class_model, gender_model, X)
     return pred
+'''
+
