@@ -4,7 +4,10 @@ from data.model import User, Post, save_user, post_image
 from data.model_modules import get_cropped_face
 from data.modules import not_logged_in, is_logged_in, get_signin_details, exception_error, check_password, get_signup_details, \
     get_passwords, get_emails, base_encode_image, api_identification
+from werkzeug.datastructures import FileStorage
 from data import app, db
+import base64
+import io
 
 
 # age_model, gender_model, age_class_model = unserialize_models()
@@ -83,40 +86,61 @@ def scan():
 def upload():
     if request.method == 'POST':
         try:
+            # 1️⃣ Check for uploaded file
             file = request.files.get('file')
-            print(file)
-            if file is None:
-                flash('There is no file part.', 'danger')
+            webcam_data = request.form.get('image')  # base64 from hidden input
+
+            if file and file.filename != "":
+                # File Upload Flow
+                image_bytes = file.read()
+                if not image_bytes:
+                    flash('Uploaded file contained no data.', 'danger')
+                    return redirect(url_for('home'))
+
+                face = get_cropped_face(image_bytes)
+                if face is None:
+                    flash('Image has no face in it.', 'danger')
+                    return redirect(url_for('home'))
+
+                user_id = session['user']['id']
+                image_name = file.filename
+                prediction = api_identification(image_bytes, file)
+
+            elif webcam_data:
+                # Webcam Base64 Flow
+                # Remove "data:image/jpeg;base64," part
+                header, encoded = webcam_data.split(",", 1)
+                image_bytes = base64.b64decode(encoded)
+
+                # Create a fake FileStorage object (to pass to api_identification)
+                file = FileStorage(
+                    stream=io.BytesIO(image_bytes),
+                    filename="webcam_capture.jpg",
+                    content_type="image/jpeg"
+                )
+
+                face = get_cropped_face(image_bytes)
+                if face is None:
+                    flash('Webcam image has no face in it.', 'danger')
+                    return redirect(url_for('home'))
+
+                user_id = session['user']['id']
+                image_name = "webcam_capture.jpg"
+                prediction = api_identification(image_bytes, file)
+
+            else:
+                flash('No image provided (upload or webcam).', 'danger')
                 return redirect(url_for('home'))
 
-            if not file.filename:  # empty filename
-                flash('File is empty.', 'danger')
-                return redirect(url_for('home'))
-
-            # Read raw bytes (store for DB) & base64 encode (for Plant.id)
-            image_bytes = file.read()
-            if not image_bytes:
-                flash('Uploaded file contained no data.', 'danger')
-                return redirect(url_for('home'))
-            face = get_cropped_face(image_bytes)
-            if face is None:
-                message = 'Image Has No Face In It'
-                flash(message, 'danger')
-                return redirect(url_for('home'))
-            '''
-            prediction = get_prediction(cropped_image=face, age_model=age_model, age_class_model=age_class_model, gender_model=gender_model)
-            '''
-            user_id = session['user']['id']
-            image_name = file.filename
-            prediction = api_identification(image_bytes, file)
+            # 2️⃣ Save & return results
             if not prediction:
-                flash('An error occurred', 'danger')
+                flash('An error occurred.', 'danger')
                 return redirect(url_for('scan'))
-            print(prediction)
+
             message, image_id = post_image(image_name, image_bytes, prediction, user_id)
-            print(message)
             flash('Image saved successfully.', 'success')
             return redirect(url_for('results', image_id=image_id))
+
         except Exception as e:
             return exception_error(e, 'home')
 
