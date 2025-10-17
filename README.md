@@ -33,31 +33,41 @@ The app detects **age range**, **gender**, **emotion**, and whether the person i
 # 1️⃣ Clone the repository
 git clone https://github.com/your-username/face-analyzer-app.git
 cd face-analyzer-app
+```
 
-# 2️⃣ Create a virtual environment
+## 2️⃣ Create a virtual environment
+```
 python -m venv venv
 source venv/bin/activate   # Mac/Linux
 venv\Scripts\activate      # Windows
+```
 
-# 3️⃣ Install dependencies
+## 3️⃣ Install dependencies
+```
 pip install -r requirements.txt
+```
 
-# 4️⃣ Set environment variables (example for Linux/Mac)
+## 4️⃣ Set environment variables (example for Linux/Mac)
+```
 export FLASK_APP=app.py
 export FLASK_ENV=development
 export RAPIDAPI_KEY=your_api_key_here
+```
 
-# 5️⃣ Initialize database
+## 5️⃣ Initialize database
+```
 flask shell
 >>> from data import db
 >>> db.create_all()
 >>> exit()
+```
 
-# 6️⃣ Run the app
+## 6️⃣ Run the app
+```
 flask run
 ```
 
-# 📂 Project Structure
+## 📂 Project Structure
 ```
 gender age detector/
 │
@@ -80,7 +90,7 @@ gender age detector/
 ├── README.md                 # Project README
 └── data.db                   # SQLite database (auto-generated)
 ```
-# 🚀 Usage
+## 🚀 Usage
 
 - Sign up or log in.
 - Upload a face image via the form.
@@ -88,7 +98,7 @@ gender age detector/
 - View results — including age range, gender, emotion, and accessories.
 - Check your history page for past detections.
 
-# 📡 API Integration
+## 📡 API Integration
 
 We use the FaceAnalyzer AI API from RapidAPI:
 
@@ -111,7 +121,7 @@ response = requests.post(url, files=files, headers=headers)
 print(response.json())
 ```
 
-# 🤝 Contributing
+## 🤝 Contributing
 
 - Fork the repository
 - Create a new branch (feature/new-feature)
@@ -119,7 +129,7 @@ print(response.json())
 -Push to your fork
 -Create a Pull Request
 
-# 💡 Author
+## 💡 Author
 
 👨‍💻 Isaac Nyame Taylor
 📧 Contact: isaac4230220@gmail.com
