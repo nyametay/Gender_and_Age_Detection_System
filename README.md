@@ -1,75 +1,46 @@
-# 🧑‍💻 Gender And Age Detector
+# 👤 Gender and Age Detection System
 
-A Flask-powered web application that analyzes faces in uploaded images using the **FaceAnalyzer AI API**.  
-The app detects **age range**, **gender**, **emotion**, and whether the person is wearing **eyeglasses**, **sunglasses**, or is **smiling** — with results stored in a user-specific prediction history.
+An AI-powered web application that analyzes facial images to predict a person's **gender** and **estimated age** using a facial analysis API.  
+Built with **Flask**, **REST APIs**, **OpenCV**, and **Tailwind CSS**.
 
----
+This system combines **computer vision** and **artificial intelligence** to provide an intuitive way to analyze facial attributes from images. Whether you're a **developer**, **student**, **researcher**, or **AI enthusiast**, the platform demonstrates how modern AI APIs can be integrated into web applications to perform real-time facial analysis with minimal setup.
 
-## 📸 Features
-
-✅ **User Authentication** – Sign up, log in, and maintain personalized detection history.  
-✅ **Face Analysis** – Detect **age range**, **gender**, **emotion**, **eyeglasses**, **sunglasses**, and **smiling status**.  
-✅ **Image Upload** – Upload an image via a form for instant AI-based prediction.  
-✅ **History Page** – View past detections in a clean, card-based layout.  
-✅ **Dark Mode Support** – Modern UI with light/dark themes.  
-✅ **Responsive Design** – Works on desktop, tablet, and mobile.  
+The application processes uploaded images, securely communicates with a facial analysis API, and presents accurate predictions through a clean, responsive interface. It showcases practical API integration, image processing, and full-stack web development.
 
 ---
 
-## 🛠️ Tech Stack
+## 🧭 Key Highlights
 
-- **Backend:** Python, Flask  
-- **Frontend:** HTML, Tailwind CSS, JavaScript  
-- **Database:** SQLite (`data.db`) with SQLAlchemy ORM  
-- **Task Handling:** Flask routes + session management  
-- **API Integration:** [FaceAnalyzer AI API](https://rapidapi.com/) via `requests`  
-- **Auth:** Flask session-based authentication  
+- 👤 **AI-Powered Gender Detection** — Predicts the gender of individuals from facial images.
+- 🎂 **Age Estimation** — Estimates a person's age using advanced facial analysis.
+- 🖼️ **Image Upload Support** — Analyze facial images directly from your device.
+- ⚡ **Real-Time Analysis** — Receive predictions within seconds through API integration.
+- 🌙 **Modern & Responsive UI** — Built with Tailwind CSS and optimized for desktop and mobile devices.
+- 🔗 **REST API Integration** — Demonstrates secure communication with external AI services.
+- 📱 **Cross-Platform Experience** — Responsive interface for multiple screen sizes.
+- 🔒 **Secure Configuration** — API credentials managed using environment variables.
 
 ---
 
-## 📦 Installation
+## 🧠 Tech Stack
 
-```bash
-# 1️⃣ Clone the repository
-git clone https://github.com/your-username/face-analyzer-app.git
-cd face-analyzer-app
-```
+| Category | Tools |
+|-----------|--------|
+| **Frontend** | HTML5, Jinja2, Tailwind CSS, JavaScript |
+| **Backend** | Flask (Python) |
+| **AI Service** | [FaceAnalyzer AI API](https://rapidapi.com/) via `requests`  |
+| **Image Processing** | OpenCV |
+| **API Communication** | Requests |
+| **Database** | SQLite / SQLAlchemy *(optional for storing analysis history)* |
+| **Environment Management** | Python-Dotenv |
+| **Deployment** | Render / Railway / Heroku |
 
-## 2️⃣ Create a virtual environment
-```
-python -m venv venv
-source venv/bin/activate   # Mac/Linux
-venv\Scripts\activate      # Windows
-```
+---
 
-## 3️⃣ Install dependencies
-```
-pip install -r requirements.txt
-```
+## 🧩 Folder Structure
 
-## 4️⃣ Set environment variables (example for Linux/Mac)
-```
-export FLASK_APP=app.py
-export FLASK_ENV=development
-export RAPIDAPI_KEY=your_api_key_here
-```
-
-## 5️⃣ Initialize database
-```
-flask shell
->>> from data import db
->>> db.create_all()
->>> exit()
-```
-
-## 6️⃣ Run the app
-```
-flask run
-```
-
-## 📂 Project Structure
-```
-gender age detector/
+```text
+Gender_and_Age_Detection_System/
 │
 ├── app.py                   # Main Flask entry point
 ├── data/                    # Application package
@@ -90,15 +61,83 @@ gender age detector/
 ├── README.md                 # Project README
 └── data.db                   # SQLite database (auto-generated)
 ```
-## 🚀 Usage
+```
 
-- Sign up or log in.
-- Upload a face image via the form.
-- Wait for AI processing (done in real-time).
-- View results — including age range, gender, emotion, and accessories.
-- Check your history page for past detections.
+---
 
-## 📡 API Integration
+# 🚀 Installation & Setup
+
+## 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/nyametay/Gender_and_Age_Detection_System.git
+cd Gender_and_Age_Detection_System
+```
+
+## 2️⃣ Create a Virtual Environment
+
+```bash
+python -m venv venv
+source venv/bin/activate       # Windows: venv\Scripts\activate
+```
+
+## 3️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## 4️⃣ Configure Environment Variables
+
+Create a `.env` file in the project root.
+
+```ini
+API_KEY=your_api_key
+API_URL=your_api_endpoint
+```
+
+## 5️⃣ Run the Application
+
+```bash
+python app.py
+```
+
+Visit:
+
+```text
+http://127.0.0.1:5000
+```
+
+---
+
+# 🧩 How It Works
+
+- The user uploads a facial image.
+- OpenCV performs basic image preprocessing.
+- The backend sends the image securely to the facial analysis API.
+- The API analyzes facial features and predicts the person's age and gender.
+- Flask processes the API response and displays the results through Jinja templates.
+- (Optional) Analysis history can be stored for future reference.
+
+---
+
+# 🧪 Example Output (JSON)
+
+```json
+{
+  "prediction": {
+    "gender": "Male",
+    "gender_confidence": 99.2,
+    "estimated_age": 27,
+    "age_range": "25-30",
+    "processing_time": "0.83s"
+  }
+}
+```
+
+---
+
+# 📡 API Integration
 
 We use the FaceAnalyzer AI API from RapidAPI:
 
@@ -121,16 +160,54 @@ response = requests.post(url, files=files, headers=headers)
 print(response.json())
 ```
 
-## 🤝 Contributing
+# 📜 Requirements
 
-- Fork the repository
-- Create a new branch (feature/new-feature)
-- Commit changes
--Push to your fork
--Create a Pull Request
+```text
+Flask
+opencv-python
+requests
+python-dotenv
+sqlalchemy
+gunicorn
+```
 
-## 💡 Author
+Install everything with:
 
-👨‍💻 Isaac Nyame Taylor
-📧 Contact: isaac4230220@gmail.com
-🔗 GitHub: nyametay
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# ☁️ Deployment (Render / Railway / Heroku)
+
+- Push your project to GitHub.
+- Configure your environment variables (`API_KEY`, `API_URL`) in your deployment platform.
+- Use the following Procfile:
+
+```text
+web: gunicorn app:app
+```
+
+Deploy the project and your Flask application will be live.
+
+---
+
+# 👨‍💻 Developer Info
+
+**Developer:** Isaac Nyame Taylor  
+**Year:** 2025
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License — free for personal and academic use with attribution.
+
+---
+
+# ⭐ Support
+
+If you find this project useful, don't forget to **star ⭐ the repository**.
+
+Your support encourages the development of more AI-powered web applications and open-source projects.
