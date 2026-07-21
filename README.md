@@ -61,7 +61,6 @@ Gender_and_Age_Detection_System/
 ├── README.md                 # Project README
 └── data.db                   # SQLite database (auto-generated)
 ```
-```
 
 ---
 
